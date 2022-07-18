@@ -8,23 +8,16 @@
 import UIKit
 
 class SubmitCompleteViewController: UIViewController {
-    let didChooseIndex: Int
     
-    init(didChooseIndex: Int){
-        self.didChooseIndex = didChooseIndex
-        super.init(nibName: nil, bundle: nil)
-    }
+    var quiz: Quiz?
     
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemBackground
         view.addSubview(successImage)
         view.addSubview(success)
         success.text = """
-            정답은: \(didChooseIndex)
+            정답은: \(quiz?.answer[quiz?.rightAnswerIndex ?? 0] ?? "")
             돌고래 너무 귀엽죠 ~~
             돌고래 완전 굿 굿!
             돌고래와 함께 춤을...
@@ -32,8 +25,7 @@ class SubmitCompleteViewController: UIViewController {
         NSLayoutConstraint.activate([
             successImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             successImage.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 250),
-            successImage.widthAnchor.constraint(equalToConstant: view.frame.width - 100),
-//            successImage.heightAnchor.constraint(equalToConstant: <#T##CGFloat#>)
+            successImage.widthAnchor.constraint(equalToConstant: view.frame.width - 100)
         ])
         NSLayoutConstraint.activate([
             success.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -55,7 +47,7 @@ class SubmitCompleteViewController: UIViewController {
     
     private let success:UITextView = {
        let success = UITextView()
-        success.text = "hi"
+        success.text = ""
         success.isEditable = false
         success.textColor = UIColor.systemBrown
         success.font = UIFont.systemFont(ofSize: 25)

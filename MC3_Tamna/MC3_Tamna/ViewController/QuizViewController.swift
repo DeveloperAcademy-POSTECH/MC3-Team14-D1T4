@@ -8,9 +8,14 @@
 import UIKit
 
 class QuizViewController: UIViewController {
-    var quiz: Quiz? = nil
+    var quiz: Quiz?
     
     var delegate: QuizDelegate?
+    var animal: String?
+    
+    private var content: AnimalQuizzes {
+        QuizDao().getQuizzessByName(animalName: animal ?? "panda")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,24 +53,26 @@ class QuizViewController: UIViewController {
         ])
     }
     
-    private let quizAnswersDolphin =
-        [
-        "goodgood",
-        "nicenice",
-        "greatgreat",
-        "thebestthebest"
-        ]
-    // 더미 퀴즈
+    private lazy var quizAnswer: [String] = {
+        let quizAnswer = quiz?.answer
+        
+        return quizAnswer ?? [""]
+    }()
+    // 퀴즈 답변
     
     private var didChooseIndex: Int = 0
     // 사용자가 누른 값
     
-    private let answerIndex: Int = 2
+    private var answerIndex: Int {
+        quiz?.rightAnswerIndex ?? 0
+    }
     // 해당 퀴즈에서 정답 값
     
     @objc private func submitButtonTapped() {
         // 퀴즈를 제출하면 해당 값들을 검사하고, 틀리면 alert을, 맞으면 SubmitCompleteViewController로 navigate 한다.
-        let detailController = SubmitCompleteViewController(didChooseIndex: self.didChooseIndex)
+        let detailController = SubmitCompleteViewController()
+        detailController.quiz = quiz
+        // quiz 넘겨주기
         if (didChooseIndex == answerIndex) {
             navigationController?.pushViewController(detailController, animated: true)
         } else {
@@ -107,7 +114,7 @@ class QuizViewController: UIViewController {
         // TextView 객체 생성
         quizText.backgroundColor = .systemGray4
         // 배경색 넣기
-        quizText.text = "blablalbalblablblal lblablabla dolphin good good ~~~"
+        quizText.text = quiz?.question
         
         quizText.layer.masksToBounds = true
         // 둥글게 만들기
@@ -122,6 +129,7 @@ class QuizViewController: UIViewController {
         // 색 설정
         quizText.textAlignment = NSTextAlignment.left
         // 정렬
+        quizText.textContainerInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         quizText.isEditable = false
         return quizText
     }()
@@ -145,7 +153,7 @@ extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: QuizAnswerCollectionViewCell.identifier, for: indexPath) as? QuizAnswerCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.quizAnswerButtonView.setTitle(quizAnswersDolphin[indexPath.row], for: .normal)
+        cell.quizAnswerButtonView.setTitle(quizAnswer[indexPath.row], for: .normal)
         cell.quizAnswerButtonView.titleLabel?.textColor = .white
         cell.quizAnswerButtonView.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         cell.quizAnswerButtonView.layer.borderColor = UIColor.white.cgColor
