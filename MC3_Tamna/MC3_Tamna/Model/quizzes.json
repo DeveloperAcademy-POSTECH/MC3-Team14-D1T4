@@ -1,0 +1,51 @@
+[
+    {
+        "id" : 0,
+        "quizzes" : [
+            {"id":0,"question" : "북극곰들은 어디서 살까요?","answer":["캐나다","러시아","그린란드","모두"],"rightAnswerIndex":3},
+            {"id":1,"question" : "북극곰이 직면한 가장 큰 위협은 무엇일까요?","answer":["밀렵","기후변화","서식지 파괴","인간과 영역이 겹침"],"rightAnswerIndex":1},
+            {"id":2,"question" : "북극곰의 털 색깔은 무슨색일까요?","answer":["검정색","흰색","회색","투명"],"rightAnswerIndex":3},
+            {"id":3,"question" : "지구의 평균기온이 1.5℃ 상승할때 생물 종류의 몇 퍼센트가 멸종위기에 처하게 될까요?","answer":["0%","10 ~ 15%","15 ~ 20%","100%"],"rightAnswerIndex":2}
+        ]
+    },
+    {
+        "id" : 1,
+        "quizzes" : [
+            {"id":0,"question" : "코끼리들은 어디서 살까요?","answer":["북아메리카, 아시아","아프리카, 유럽","아시아, 아프리카","아시아, 오스트레일리아"],"rightAnswerIndex":2},
+            {"id":1,"question" : "코끼리는 하루 평균 얼마만큼의 먹이를 먹을까요??","answer":["100kg","150kg","250kg","300kg"],"rightAnswerIndex":1},
+            {"id":2,"question" : "코끼리는 코를 어떻게 활용할까요?","answer":["냄새맡기","음식 나르기","소통","모두"],"rightAnswerIndex":3},
+            {"id":3,"question" : "코끼리의 개체수 감소에 가장 큰 영향을 끼치는 것은?","answer":["불법 상아거래","서식지 감소","기후 변화","사자"],"rightAnswerIndex":0}
+        ]
+    },
+    {
+        "id" : 2,
+        "quizzes" : [
+            {"id":0,"question" : "돌고래들은 어디서 살까요?","answer":["바다","연안","어귀","모두"],"rightAnswerIndex":3},
+            {"id":1,"question" : "돌고래들은 어떻게 잘까요?","answer":["잠을 자지않습니다","우리처럼 바다바닥에 누워서 잡니다","눈을 뜨고 잡니다","뇌의 절반씩 교대하면서 잡니다"],"rightAnswerIndex":3},
+            {"id":2,"question" : "돌고래에게 가장 큰 위협은 무엇일까요?","answer":["서식지 파괴","다른생선을 잡는 그물에 걸림","질병","관광객"],"rightAnswerIndex":1},
+            {"id":3,"question" : "바다 쓰레기는 어디서 가장 많이 발생할까요?","answer":["육지에서 떠내려온다","해양생물이나 물고기가 만든다","바다를 떠다니는 배들에서 버린다","잠수부들이 버린다"],"rightAnswerIndex":0}
+            
+        ]
+    },
+    {
+        "id" : 3,
+        "quizzes" : [
+            {"id":0,"question" : "호랑이가 가진 특별한 기술은 무엇일까요?","answer":["도약","수영","기어오르기","모두"],"rightAnswerIndex":3},
+            {"id":1,"question" : "호랑이의 오줌에는 어떤냄새가 난다고 알러져있나요?","answer":["치즈 냄새","버터팝콘 냄새","상한고기 냄새","꽃향기"],"rightAnswerIndex":1},
+            {"id":2,"question" : "호랑이가 성공적으로 사냥할 확률은 얼마나 될까요?","answer":["3%","10%","20%","40%"],"rightAnswerIndex":1},
+            {"id":3,"question" : "왜 호랑이가 위협을 받고있을까요?","answer":["호랑이의 뼈, 가죽, 털을 얻기위한 밀렵","서식지 파괴","서식지 파괴와 밀렵","사자"],"rightAnswerIndex":2},
+            {"id":4,"question" : "야생호랑이는 몇마리 정도 있을까요?","answer":["390마리","3,900마리","39,000마리","390,000마리"],"rightAnswerIndex":1}
+        ]
+    },
+    {
+        "id":4,
+        "quizzes" : [
+            {"id":0,"question" : "야생의 자이언트 판다는 어디서 찾아볼수 있을까요?","answer":["유럽","중국","러시아","일본"],"rightAnswerIndex":1},
+            {"id":1,"question" : "판다는 주로 무엇을 먹을까요?","answer":["잎","과일","대나무","견과류"],"rightAnswerIndex":2},
+            {"id":2,"question" : "자이언트 판다는 야생에 얼마나 많이 남아있을까요?","answer":["200마리","1,860마리","5,200마리","10,800마리"],"rightAnswerIndex":1},
+            {"id":3,"question" : "아기판다는 태어났을때 무게가 얼마나 될까요?","answer":["50 ~ 100g","85 ~ 140g","1kg","5kg"],"rightAnswerIndex":1},
+            {"id":4,"question" : "판다는 하루에 똥을 몇번 쌀까요?","answer":["1번","5번","20번","40번"],"rightAnswerIndex":3}
+        ]
+    }
+]
+
