@@ -9,7 +9,9 @@ import UIKit
 
 class QuizViewController: UIViewController {
     var quiz: Quiz? = nil
+    
     var delegate: QuizDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,21 +48,27 @@ class QuizViewController: UIViewController {
         ])
     }
     
-    let quizAnswersDolphin =
+    private let quizAnswersDolphin =
         [
         "goodgood",
         "nicenice",
         "greatgreat",
         "thebestthebest"
         ]
-    var didChooseIndex: Int = 0
-    let answerIndex: Int = 2
-    @objc func submitButtonTapped(){
+    // 더미 퀴즈
+    
+    private var didChooseIndex: Int = 0
+    // 사용자가 누른 값
+    
+    private let answerIndex: Int = 2
+    // 해당 퀴즈에서 정답 값
+    
+    @objc private func submitButtonTapped() {
+        // 퀴즈를 제출하면 해당 값들을 검사하고, 틀리면 alert을, 맞으면 SubmitCompleteViewController로 navigate 한다.
         let detailController = SubmitCompleteViewController(didChooseIndex: self.didChooseIndex)
-        if(didChooseIndex == answerIndex){
+        if (didChooseIndex == answerIndex) {
             navigationController?.pushViewController(detailController, animated: true)
-        }
-        else{
+        } else {
             let alert = UIAlertController(title: "오답입니다", message: "다시 한번 생각해볼까요?", preferredStyle: .alert)
             let tryAgain = UIAlertAction(title: "알겠어요!", style: .default, handler: nil)
             
@@ -70,6 +78,7 @@ class QuizViewController: UIViewController {
     }
     
     private let quizImage: UIImageView = {
+        // view 상단에 있는 이미지
         var quizImage = UIImage(named: "dolphin")
         // Image 생성 (현재 더미)
         quizImage = quizImage?.withRenderingMode(.alwaysOriginal)
@@ -81,6 +90,7 @@ class QuizViewController: UIViewController {
     }()
     
     private let quizSubmit: UIButton = {
+        // view 최하단에 있는 제출 버튼
         let quizSubmit = UIButton()
         quizSubmit.setTitle("정답 제출하기", for: .normal)
         quizSubmit.titleLabel?.textColor = UIColor.white
@@ -92,6 +102,7 @@ class QuizViewController: UIViewController {
     }()
     
     lazy var quizText: UITextView = {
+        // view 중앙에 있는 퀴즈 소개
         var quizText: UITextView = UITextView(frame: CGRect(x: 20, y: 350, width: self.view.bounds.width - 40, height: 100))
         // TextView 객체 생성
         quizText.backgroundColor = .systemGray4
@@ -116,6 +127,7 @@ class QuizViewController: UIViewController {
     }()
     
     private let quizAnswerCollection: UICollectionView = {
+        // view 하단에 있는 quizAnswer 4개
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.register(QuizAnswerCollectionViewCell.self, forCellWithReuseIdentifier: QuizAnswerCollectionViewCell.identifier)
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -144,13 +156,17 @@ extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! QuizAnswerCollectionViewCell
         didChooseIndex = cell.tag
-        if cell.clickCount == 1{
+        if cell.clickCount == 1 {
+            // 이미 눌린 것을 누를 경우
             cell.clickCount = 0
-        }else{
+            // 초기화
+        } else {
+            // 안 눌린 것을 누를 경우
             cell.clickCount += 1
         }
     }
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        // 선택 활성화
         return true
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
