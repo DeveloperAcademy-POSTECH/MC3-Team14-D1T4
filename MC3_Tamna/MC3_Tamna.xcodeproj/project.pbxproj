@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83FE8109288544CE004B5367 /* SubmitCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE8108288544CE004B5367 /* SubmitCompleteViewController.swift */; };
+		83FE810B2885458D004B5367 /* QuizAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE810A2885458D004B5367 /* QuizAnswerCollectionViewCell.swift */; };
+		83FE810E288546F3004B5367 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 83FE810D288546F3004B5367 /* Lottie */; };
 		96027E84288432F300D2E07E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96027E83288432F300D2E07E /* AppDelegate.swift */; };
 		96027E86288432F300D2E07E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96027E85288432F300D2E07E /* SceneDelegate.swift */; };
 		96027E88288432F300D2E07E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96027E87288432F300D2E07E /* MainViewController.swift */; };
@@ -27,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83FE8108288544CE004B5367 /* SubmitCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCompleteViewController.swift; sourceTree = "<group>"; };
+		83FE810A2885458D004B5367 /* QuizAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		96027E80288432F300D2E07E /* MC3_Tamna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC3_Tamna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96027E83288432F300D2E07E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96027E85288432F300D2E07E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				967FF605288439E800E5AF0A /* Lottie in Frameworks */,
+				83FE810E288546F3004B5367 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +104,7 @@
 				96027E87288432F300D2E07E /* MainViewController.swift */,
 				967FF601288437AF00E5AF0A /* StarViewController.swift */,
 				967FF6082884517F00E5AF0A /* QuizViewController.swift */,
+				83FE8108288544CE004B5367 /* SubmitCompleteViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				967FF606288442E500E5AF0A /* MissionCell.swift */,
+				83FE810A2885458D004B5367 /* QuizAnswerCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 			name = MC3_Tamna;
 			packageProductDependencies = (
 				967FF604288439E800E5AF0A /* Lottie */,
+				83FE810D288546F3004B5367 /* Lottie */,
 			);
 			productName = MC3_Tamna;
 			productReference = 96027E80288432F300D2E07E /* MC3_Tamna.app */;
@@ -213,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83FE8109288544CE004B5367 /* SubmitCompleteViewController.swift in Sources */,
 				96027E88288432F300D2E07E /* MainViewController.swift in Sources */,
 				967FF607288442E500E5AF0A /* MissionCell.swift in Sources */,
 				96027E84288432F300D2E07E /* AppDelegate.swift in Sources */,
@@ -221,6 +231,7 @@
 				96027E99288433F600D2E07E /* Extension.swift in Sources */,
 				967FF602288437AF00E5AF0A /* StarViewController.swift in Sources */,
 				967FF600288435B600E5AF0A /* Data.swift in Sources */,
+				83FE810B2885458D004B5367 /* QuizAnswerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +452,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		83FE810D288546F3004B5367 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 967FF603288439E800E5AF0A /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		967FF604288439E800E5AF0A /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 967FF603288439E800E5AF0A /* XCRemoteSwiftPackageReference "lottie-ios" */;
