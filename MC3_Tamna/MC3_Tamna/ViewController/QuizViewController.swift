@@ -70,7 +70,7 @@ class QuizViewController: UIViewController {
     }
     
     private let quizImage: UIImageView = {
-        var quizImage = UIImage(named: "Dolphin")
+        var quizImage = UIImage(named: "dolphin")
         // Image 생성 (현재 더미)
         quizImage = quizImage?.withRenderingMode(.alwaysOriginal)
         // Image가 깨지지 않고 원본을 그대로 렌더링 하게 설정

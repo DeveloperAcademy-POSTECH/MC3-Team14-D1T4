@@ -45,7 +45,7 @@ class SubmitCompleteViewController: UIViewController {
     }
     
     private let successImage: UIImageView = {
-        var image = UIImage(named: "Dolphin")
+        var image = UIImage(named: "dolphin")
         image = image?.withRenderingMode(.alwaysOriginal)
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
