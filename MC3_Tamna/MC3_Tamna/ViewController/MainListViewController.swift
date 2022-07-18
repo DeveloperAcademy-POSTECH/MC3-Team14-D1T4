@@ -20,7 +20,7 @@ class MainListViewController: UIViewController {
     
     func makeButton(imageName: String) -> UIButton {
         
-        let button:UIButton = {
+        let button: UIButton = {
             let button = UIButton()
             button.backgroundColor = .black
             let image = UIImage(named: imageName)
