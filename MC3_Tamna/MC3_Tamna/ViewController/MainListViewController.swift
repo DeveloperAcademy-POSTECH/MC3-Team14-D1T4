@@ -9,8 +9,8 @@ import UIKit
 
 class MainListViewController: UIViewController {
     
-    let dirtyImage:[String] = ["scene1", "scene3", "scene5", "scene7", "scene9"]
-    let cleanImage:[String] = ["scene2", "scene4", "scene6", "scene8", "scene10"]
+    let dirtyImages = ["scene1", "scene3", "scene5", "scene7", "scene9"]
+    let cleanImages = ["scene2", "scene4", "scene6", "scene8", "scene10"]
     
     @objc func toQuizView(){
         print("Go to Quiz view")
@@ -126,11 +126,11 @@ class MainListViewController: UIViewController {
         let buttonWidth = view.bounds.width * 0.9
         let buttonHeight = CGFloat(180)
         
-        let imageView1 = makeImageView(imageName: cleanImage[0])
-        let imageView2 = makeImageView(imageName: cleanImage[1])
-        let imageView3 = makeImageView(imageName: cleanImage[2])
-        let imageView4 = makeImageView(imageName: cleanImage[3])
-        let imageView5 = makeImageView(imageName: cleanImage[4])
+        let imageView1 = makeImageView(imageName: cleanImages[0])
+        let imageView2 = makeImageView(imageName: cleanImages[1])
+        let imageView3 = makeImageView(imageName: cleanImages[2])
+        let imageView4 = makeImageView(imageName: cleanImages[3])
+        let imageView5 = makeImageView(imageName: cleanImages[4])
         
         contentView.addSubview(imageView1)
         contentView.addSubview(imageView2)
@@ -166,11 +166,11 @@ class MainListViewController: UIViewController {
             imageView5.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
         
-        let button1 = makeButton(imageName: dirtyImage[0])
-        let button2 = makeButton(imageName: dirtyImage[1])
-        let button3 = makeButton(imageName: dirtyImage[2])
-        let button4 = makeButton(imageName: dirtyImage[3])
-        let button5 = makeButton(imageName: dirtyImage[4])
+        let button1 = makeButton(imageName: dirtyImages[0])
+        let button2 = makeButton(imageName: dirtyImages[1])
+        let button3 = makeButton(imageName: dirtyImages[2])
+        let button4 = makeButton(imageName: dirtyImages[3])
+        let button5 = makeButton(imageName: dirtyImages[4])
         
         contentView.addSubview(button1)
         contentView.addSubview(button2)
