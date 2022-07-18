@@ -46,7 +46,7 @@ class QuizViewController: UIViewController {
         ])
     }
     
-    let quizAnswersDolphin: [String] =
+    let quizAnswersDolphin =
         [
         "goodgood",
         "nicenice",
@@ -62,7 +62,7 @@ class QuizViewController: UIViewController {
         }
         else{
             let alert = UIAlertController(title: "오답입니다", message: "다시 한번 생각해볼까요?", preferredStyle: .alert)
-            let tryAgain = UIAlertAction(title: "알겠어요!", style: .destructive, handler: nil)
+            let tryAgain = UIAlertAction(title: "알겠어요!", style: .default, handler: nil)
             
             alert.addAction(tryAgain)
             present(alert, animated: true, completion: nil)

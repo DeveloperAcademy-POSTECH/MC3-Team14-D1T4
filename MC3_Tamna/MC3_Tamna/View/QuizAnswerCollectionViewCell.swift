@@ -24,7 +24,8 @@ class QuizAnswerCollectionViewCell: UICollectionViewCell {
                 quizAnswerButtonView.layer.borderColor = UIColor.clear.cgColor
                 quizAnswerButtonView.layer.borderWidth = 0
                 
-            }else{
+            }
+            else {
                 
             }
         }
@@ -35,7 +36,7 @@ class QuizAnswerCollectionViewCell: UICollectionViewCell {
                 quizAnswerButtonView.layer.borderWidth = 4
                 quizAnswerButtonView.layer.borderColor = UIColor.red.cgColor
             }
-            else{
+            else {
                 
             }
         }
