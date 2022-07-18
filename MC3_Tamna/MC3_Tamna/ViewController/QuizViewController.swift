@@ -22,6 +22,10 @@ class QuizViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         view.addSubview(quizImage)
+        view.addSubview(quizText)
+        view.addSubview(quizAnswerCollection)
+        view.addSubview(quizSubmit)
+        configureNavbar()
         NSLayoutConstraint.activate([
             quizImage.centerXAnchor.constraint(equalTo:  view.centerXAnchor),
             quizImage.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 200),
@@ -29,8 +33,7 @@ class QuizViewController: UIViewController {
             quizImage.heightAnchor.constraint(equalToConstant: 200)
             // autolayout
         ])
-        view.addSubview(quizText)
-        view.addSubview(quizAnswerCollection)
+        
         NSLayoutConstraint.activate([
             quizAnswerCollection.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             quizAnswerCollection.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
@@ -44,7 +47,7 @@ class QuizViewController: UIViewController {
         // datasource 연결
         quizAnswerCollection.contentInset = UIEdgeInsets(top: 15, left: 30, bottom: 0, right: 30)
         // padding
-        view.addSubview(quizSubmit)
+        
         NSLayoutConstraint.activate([
             quizSubmit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             quizSubmit.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
@@ -141,6 +144,13 @@ class QuizViewController: UIViewController {
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
+    private func configureNavbar(){
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "lightbulb.fill"), style: .done, target: self, action: nil)
+        ]
+        navigationController?.navigationBar.tintColor = .systemBrown
+        // 객체의 색깔을 바꾸는 방법
+    }
 }
 
 extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
