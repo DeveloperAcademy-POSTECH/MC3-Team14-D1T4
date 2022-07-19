@@ -19,22 +19,21 @@ class StarViewController: UIViewController {
     
     // MARK: Properties
     
-    // 3. MainVC로부터 전달받음
+    // MainVC로부터 전달받음
     var animal: String?
     
-    // 4. 받은 animal을 기반으로 해당 content 불러와서 할당
+    // 받은 animal을 기반으로 해당 content 불러와서 할당
     private var content: AnimalQuizzes {
         QuizDao().getQuizzessByName(animalName: animal ?? "panda")
     }
     
-    // 5. 받은 animal을 기반으로 해당 animal의 frame배열을 할당 (feat. getFrames())
+    // 받은 animal을 기반으로 해당 animal의 frame배열을 할당 (feat. getFrames())
     private var lottieFrames: [CGFloat] = []
     
     
-    // 앞에서 왔는지, 뒤에서 왔는지
+    // 앞에서 왔는지, 뒤에서 왔는지!
     var isPushFromFront: Bool = true
     
-    // 6. 가장 마지막으로 clear된 quiz의 index
     /*
      isPushFromFront 변수를 만든 이유
      - MainVC -> StarVC로 왔을 경우에는 애니메이션 동작이 일어나선 안된다.
