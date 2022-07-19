@@ -31,11 +31,7 @@ class StarViewController: UIViewController, QuizDelegate {
     private var lottieFrames: [CGFloat] = []
     
     // 6. 가장 마지막으로 clear된 quiz의 index
-    private var clearIndex = -1 {
-        didSet { // 7. clear 되었을 때 저장
-            UserDefaults.standard.set(clearIndex, forKey: animal ?? "panda")
-        }
-    }
+    private var clearIndex = -1
     
     // MARK: UIComponents
     
