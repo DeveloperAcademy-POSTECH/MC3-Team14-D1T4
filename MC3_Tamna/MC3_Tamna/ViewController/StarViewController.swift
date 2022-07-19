@@ -133,7 +133,7 @@ class StarViewController: UIViewController {
 }
 
 // MARK: Delegate, DataSource
-extension StarViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension StarViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return content.quizzes.count
@@ -143,6 +143,22 @@ extension StarViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionCell.identifier, for: indexPath) as? MissionCell else { return UICollectionViewCell() }
         cell.configureCell(quiz: content.quizzes[indexPath.row], clearIndex: clearIndex)
         return cell
+    }
+}
+
+extension StarViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath),
+              indexPath.row == clearIndex + 1 else { return }
+        cell.contentView.layer.shadowColor = UIColor.clear.cgColor
+        cell.contentView.backgroundColor = .white.withAlphaComponent(0.5)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath),
+              indexPath.row == clearIndex + 1 else { return }
+        cell.contentView.layer.shadowColor = UIColor.black.cgColor
+        cell.contentView.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
