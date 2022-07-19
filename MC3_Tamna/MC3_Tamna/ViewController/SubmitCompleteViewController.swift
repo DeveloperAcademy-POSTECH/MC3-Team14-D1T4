@@ -11,6 +11,7 @@ class SubmitCompleteViewController: UIViewController {
     
     var quiz: Quiz?
     var delegate: QuizDelegate?
+    var animal: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,10 +85,7 @@ class SubmitCompleteViewController: UIViewController {
     // FIXME: func didClearQuizID did not work
     
     @objc private func clearButtonTapped() {
-             if let quiz = quiz {
-                 // 정답 맞췄을 때, 이런 식으로 건네주면 될 것 같다.
-                 delegate?.didClearQuizID(id: quiz.id)
-             }
+        UserDefaults.standard.set(quiz?.id, forKey: animal ?? "panda")
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: StarViewController.self) {
                     self.navigationController!.popToViewController(controller, animated: true)
@@ -96,5 +94,5 @@ class SubmitCompleteViewController: UIViewController {
         }
         // reference: https://stackoverflow.com/questions/30003814/how-can-i-pop-specific-view-controller-in-swift
          }
-    
+    //notification center
 }

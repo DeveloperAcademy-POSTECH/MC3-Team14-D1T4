@@ -13,10 +13,6 @@ class QuizViewController: UIViewController {
     var delegate: QuizDelegate?
     var animal: String?
     
-    private var content: AnimalQuizzes {
-        QuizDao().getQuizzessByName(animalName: animal ?? "panda")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +71,8 @@ class QuizViewController: UIViewController {
         // 퀴즈를 제출하면 해당 값들을 검사하고, 틀리면 alert을, 맞으면 SubmitCompleteViewController로 navigate 한다.
         let detailController = SubmitCompleteViewController()
         detailController.quiz = quiz
-        // quiz 넘겨주기
+        detailController.animal = animal
+        // quiz, animal 넘겨주기
         if (didChooseIndex == answerIndex) {
             navigationController?.pushViewController(detailController, animated: true)
         } else {
@@ -148,7 +145,7 @@ class QuizViewController: UIViewController {
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "lightbulb.fill"), style: .done, target: self, action: nil)
         ]
-        navigationController?.navigationBar.tintColor = .systemBrown
+        navigationController?.navigationBar.tintColor = UIColor.wwfYellow
         // 객체의 색깔을 바꾸는 방법
     }
 }
