@@ -130,26 +130,6 @@ class StarViewController: UIViewController {
             height: .screenW + .hund
         )
     }
-    
-    // 저장 key없으면 guard return. 있으면 값 세팅.
-    func loadUserDefaults() {
-        guard UserDefaults.standard.dictionaryRepresentation().keys.contains(animal ?? "") else { return }
-        clearIndex = UserDefaults.standard.integer(forKey: animal ?? "")
-    }
-    
-    // clearIndex의 didSet구문 조건 참고. didSet 내부에서 호출.
-    func reloadUIComponents() {
-        progressLabel.text = "\(clearIndex+1)/\(content.quizzes.count)"
-        
-        lottieView.play(toFrame: lottieFrames[clearIndex]) // from-to에서 to로 수정. current상태는 남아있을것이기 때문.
-        
-        //reload collection item...
-        collectionView.reloadItems(at: [IndexPath.init(row: clearIndex, section: 0)])
-        
-        if clearIndex < content.quizzes.count - 1 {
-            collectionView.reloadItems(at: [IndexPath.init(row: clearIndex + 1, section: 0)])
-        }
-    }
 }
 
 // MARK: Delegate, DataSource
@@ -215,6 +195,26 @@ private extension StarViewController {
         
         if clearIndex != -1 {
             lottieView.currentFrame = lottieFrames[clearIndex]
+        }
+    }
+    
+    // 저장 key없으면 guard return. 있으면 값 세팅.
+    func loadUserDefaults() {
+        guard UserDefaults.standard.dictionaryRepresentation().keys.contains(animal ?? "") else { return }
+        clearIndex = UserDefaults.standard.integer(forKey: animal ?? "")
+    }
+    
+    // clearIndex의 didSet구문 조건 참고. didSet 내부에서 호출.
+    func reloadUIComponents() {
+        progressLabel.text = "\(clearIndex+1)/\(content.quizzes.count)"
+        
+        lottieView.play(toFrame: lottieFrames[clearIndex]) // from-to에서 to로 수정. current상태는 남아있을것이기 때문.
+        
+        //reload collection item...
+        collectionView.reloadItems(at: [IndexPath.init(row: clearIndex, section: 0)])
+        
+        if clearIndex < content.quizzes.count - 1 {
+            collectionView.reloadItems(at: [IndexPath.init(row: clearIndex + 1, section: 0)])
         }
     }
 }
