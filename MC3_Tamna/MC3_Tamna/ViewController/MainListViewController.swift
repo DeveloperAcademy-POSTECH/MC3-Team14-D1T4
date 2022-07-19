@@ -20,7 +20,6 @@ class MainListViewController: UIViewController {
     private var animalList = ["polarbear", "elephant", "dolphin", "tiger", "panda"]
     
     @objc func toQuizView(){
-        print("Go to Quiz view")
         let detailController = QuizViewController()
         navigationController?.pushViewController(detailController, animated: true)
     }

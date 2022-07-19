@@ -10,7 +10,6 @@ import UIKit
 class SubmitCompleteViewController: UIViewController {
     
     var quiz: Quiz?
-    var delegate: QuizDelegate?
     var animal: String?
     
     override func viewDidLoad() {
@@ -70,7 +69,7 @@ class SubmitCompleteViewController: UIViewController {
         return success
     }()
     
-    private let endButton: UIButton = {
+    private lazy var endButton: UIButton = {
         // 해설을 전부 보고, 나가는 버튼
         let button = UIButton()
         button.setTitle("완료", for: .normal)
@@ -85,7 +84,7 @@ class SubmitCompleteViewController: UIViewController {
     // FIXME: func didClearQuizID did not work
     
     @objc private func clearButtonTapped() {
-        UserDefaults.standard.set(quiz?.id, forKey: animal ?? "panda")
+        UserDefaults.standard.set(quiz!.id, forKey: animal ?? "panda")
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: StarViewController.self) {
                     self.navigationController!.popToViewController(controller, animated: true)

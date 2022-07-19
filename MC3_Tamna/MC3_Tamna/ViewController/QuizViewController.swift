@@ -9,8 +9,7 @@ import UIKit
 
 class QuizViewController: UIViewController {
     var quiz: Quiz?
-    
-    var delegate: QuizDelegate?
+
     var animal: String?
     
     override func viewDidLoad() {
@@ -96,7 +95,7 @@ class QuizViewController: UIViewController {
         return imageView
     }()
     
-    private let quizSubmit: UIButton = {
+    private lazy var quizSubmit: UIButton = {
         // view 최하단에 있는 제출 버튼
         let quizSubmit = UIButton()
         quizSubmit.setTitle("정답 제출하기", for: .normal)
@@ -185,18 +184,10 @@ extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         return true
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            return 50
-        }
+        return 50
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let spacing: CGFloat = 20
-            return CGSize(width: (collectionView.bounds.width / 2 - spacing * 2), height: 70)
-        }
-    
-}
-
-
-
-
-protocol QuizDelegate {
-    func didClearQuizID(id clearQuiz: Int)
+        let spacing: CGFloat = 20
+        return CGSize(width: (collectionView.bounds.width / 2 - spacing * 2), height: 70)
+    }
 }

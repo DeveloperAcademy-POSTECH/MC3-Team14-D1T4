@@ -13,27 +13,39 @@ protocol ContentDelegate {
     func didClearContentID(id clearContent: Int)
 }
 
-class StarViewController: UIViewController, QuizDelegate {
+class StarViewController: UIViewController {
     
     var delegate: ContentDelegate?
     
     // MARK: Properties
     
-    // 3. MainVC로부터 전달받음
+    // MainVC로부터 전달받음
     var animal: String?
     
-    // 4. 받은 animal을 기반으로 해당 content 불러와서 할당
+    // 받은 animal을 기반으로 해당 content 불러와서 할당
     private var content: AnimalQuizzes {
         QuizDao().getQuizzessByName(animalName: animal ?? "panda")
     }
     
-    // 5. 받은 animal을 기반으로 해당 animal의 frame배열을 할당 (feat. getFrames())
+    // 받은 animal을 기반으로 해당 animal의 frame배열을 할당 (feat. getFrames())
     private var lottieFrames: [CGFloat] = []
     
-    // 6. 가장 마지막으로 clear된 quiz의 index
+    
+    // 앞에서 왔는지, 뒤에서 왔는지!
+    var isPushFromFront: Bool = true
+    
+    /*
+     isPushFromFront 변수를 만든 이유
+     - MainVC -> StarVC로 왔을 경우에는 애니메이션 동작이 일어나선 안된다.
+     - QuizVC -> MainVC로 돌아올 경우에는 애니메이션 동작이 발생한다. 단, 문제가 풀렸을 경우만~! 그렇기에 oldValue != clearIndex조건 추가.
+     */
     private var clearIndex = -1 {
-        didSet { // 7. clear 되었을 때 저장
-            UserDefaults.standard.set(clearIndex, forKey: animal ?? "panda")
+        didSet {
+            if !isPushFromFront && oldValue != clearIndex {
+                reloadUIComponents()
+            }
+            guard clearIndex + 1 == content.quizzes.count else { return }
+            delegate?.didClearContentID(id: content.id) //완료 시 delegate로 데이터 MainVC에 전달.
         }
     }
     
@@ -83,22 +95,23 @@ class StarViewController: UIViewController, QuizDelegate {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: progressLabel)
         
-        configureSubviews()
+        loadUserDefaults() // clearIndex setting - clearIndex를 기반으로 형성되는 뷰가 있기에 가장 먼저 호출.
         
-        // 8. 저장된 clear 단계 load (저장된 것이 없을 땐 default 0을 줘버리니 조건 걸어야함)
-        if UserDefaults.standard.dictionaryRepresentation().keys.contains(animal ?? "") {
-            clearIndex = UserDefaults.standard.integer(forKey: animal ?? "")
-        }
+        configureSubviews() // subview setting
 
-        setLottieFrames() // 순서 중요
-        
-        progressLabel.text = "\(clearIndex+1)/\(content.quizzes.count)"
+        setLottieFrames() // lottie frames array setting
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.isHidden = false
+        
+        loadUserDefaults() // clearIndex setting
+        
+        isPushFromFront = false // if push: true -> false, if pop: false -> false
+        // false를 여기서 할당한 이유. loadUserDefaults는 필수적으로 viewWillAppear에서 구현되어야 제때 값의 변화를 감지할 수 있다.
+        // 헌데 viewDidLoad에서 false를 할당할 경우에는 그 이후 호출되는 viewWillAppear에 의해 애니메이션이 발생해버릴 수가 있다.
     }
     
     // MARK: Layout frame
@@ -116,32 +129,6 @@ class StarViewController: UIViewController, QuizDelegate {
             width: .screenW,
             height: .screenW + .hund
         )
-    }
-    
-    // MARK: QuizDelegate Method
-    
-    func didClearQuizID(id clearQuiz: Int) { // clear한 Quiz의 id (Int) 값이 전달될 것임
-        clearIndex = clearQuiz // 14. clear된 quiz의 id(==index)를 clearIndex에 할당
-        
-        collectionView.reloadItems(at: [IndexPath.init(row: clearIndex, section: 0)])
-        
-        if clearIndex < content.quizzes.count - 1 {
-            collectionView.reloadItems(at: [IndexPath.init(row: clearIndex + 1, section: 0)])
-        }
-        
-        // 15. label 갱신
-        progressLabel.text = "\(clearIndex+1)/\(content.quizzes.count)"
-        
-        // 16. lottieView 재생
-        if clearIndex == 0 {
-            lottieView.play(fromFrame: 0, toFrame: lottieFrames[clearIndex])
-        } else {
-            lottieView.play(fromFrame: lottieFrames[clearIndex-1], toFrame: lottieFrames[clearIndex])
-        }
-        
-        if clearIndex+1 == content.quizzes.count { // 모든 문제 완료 시
-            delegate?.didClearContentID(id: content.id)
-        }
     }
 }
 
@@ -163,7 +150,7 @@ extension StarViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard indexPath.row == clearIndex + 1 else { return }
         let vc = QuizViewController()
         vc.quiz = content.quizzes[indexPath.row] // 12. quiz 건네기
-        vc.delegate = self // 13. 데이터 전달받기위해 delegate 채택
+        vc.animal = animal
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -183,6 +170,9 @@ private extension StarViewController {
             progressLabel.widthAnchor.constraint(equalToConstant: .hund)
         ]
         NSLayoutConstraint.activate(constraints)
+        
+        progressLabel.text = "\(clearIndex+1)/\(content.quizzes.count)"
+        //text 할당을 UILabel 초기화 코드에서 하지않은 이유 -> breakPoint를 걸어보면 UILabel 초기화클로저가 viewDidLoad보다도 먼저 실행됨. 그렇기에 아직 UserDefaults에서 clearIndex를 로드해주지 못한 상황이라 "0/4"로 나타나게 되버림. 그렇기에 viewDidLoad에서 잡아줌.
     }
     
     func setLottieFrames() {
@@ -202,9 +192,29 @@ private extension StarViewController {
         default:
             break
         }
-        // 10. 나갔다 들어왔을 때 clear한 단계까지의 lottie frame 상태가 되도록 설정
+        
         if clearIndex != -1 {
             lottieView.currentFrame = lottieFrames[clearIndex]
+        }
+    }
+    
+    // 저장 key없으면 guard return. 있으면 값 세팅.
+    func loadUserDefaults() {
+        guard UserDefaults.standard.dictionaryRepresentation().keys.contains(animal ?? "") else { return }
+        clearIndex = UserDefaults.standard.integer(forKey: animal ?? "")
+    }
+    
+    // clearIndex의 didSet구문 조건 참고. didSet 내부에서 호출.
+    func reloadUIComponents() {
+        progressLabel.text = "\(clearIndex+1)/\(content.quizzes.count)"
+        
+        lottieView.play(toFrame: lottieFrames[clearIndex]) // from-to에서 to로 수정. current상태는 남아있을것이기 때문.
+        
+        //reload collection item...
+        collectionView.reloadItems(at: [IndexPath.init(row: clearIndex, section: 0)])
+        
+        if clearIndex < content.quizzes.count - 1 {
+            collectionView.reloadItems(at: [IndexPath.init(row: clearIndex + 1, section: 0)])
         }
     }
 }
