@@ -85,8 +85,6 @@ class SubmitCompleteViewController: UIViewController {
     
     @objc private func clearButtonTapped() {
         UserDefaults.standard.set(quiz!.id, forKey: animal ?? "panda")
-        print("버킬: \(quiz?.id)")
-        print("버킬: \(animal)")
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: StarViewController.self) {
                     self.navigationController!.popToViewController(controller, animated: true)
