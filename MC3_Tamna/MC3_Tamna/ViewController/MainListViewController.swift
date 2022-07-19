@@ -9,8 +9,15 @@ import UIKit
 
 class MainListViewController: UIViewController {
     
-    let dirtyImages = ["scene1", "scene3", "scene5", "scene7", "scene9"]
-    let cleanImages = ["scene2", "scene4", "scene6", "scene8", "scene10"]
+    // for saving
+    private var clearContents: [Int] = [] {
+        didSet {
+            UserDefaults.standard.set(clearContents, forKey: "clearContents")
+        }
+    }
+    
+    // 1. StarVC에 넘길 동물의 이름
+    private var animalList = ["polarbear", "elephant", "dolphin", "tiger", "panda"]
     
     @objc func toQuizView(){
         print("Go to Quiz view")
@@ -44,6 +51,11 @@ class MainListViewController: UIViewController {
         
         return button
     }
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
     
     func makeImageView(imageName: String) -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: imageName))
@@ -126,11 +138,11 @@ class MainListViewController: UIViewController {
         let buttonWidth = view.bounds.width * 0.9
         let buttonHeight = CGFloat(180)
         
-        let imageView1 = makeImageView(imageName: cleanImages[0])
-        let imageView2 = makeImageView(imageName: cleanImages[1])
-        let imageView3 = makeImageView(imageName: cleanImages[2])
-        let imageView4 = makeImageView(imageName: cleanImages[3])
-        let imageView5 = makeImageView(imageName: cleanImages[4])
+        let imageView1 = makeImageView(imageName: animalList[0] + "_clean")
+        let imageView2 = makeImageView(imageName: animalList[1] + "_clean")
+        let imageView3 = makeImageView(imageName: animalList[2] + "_clean")
+        let imageView4 = makeImageView(imageName: animalList[3] + "_clean")
+        let imageView5 = makeImageView(imageName: animalList[4] + "_clean")
         
         contentView.addSubview(imageView1)
         contentView.addSubview(imageView2)
@@ -166,11 +178,11 @@ class MainListViewController: UIViewController {
             imageView5.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
         
-        let button1 = makeButton(imageName: dirtyImages[0])
-        let button2 = makeButton(imageName: dirtyImages[1])
-        let button3 = makeButton(imageName: dirtyImages[2])
-        let button4 = makeButton(imageName: dirtyImages[3])
-        let button5 = makeButton(imageName: dirtyImages[4])
+        let button1 = makeButton(imageName: animalList[0] + "_dirty")
+        let button2 = makeButton(imageName: animalList[0] + "_dirty")
+        let button3 = makeButton(imageName: animalList[0] + "_dirty")
+        let button4 = makeButton(imageName: animalList[0] + "_dirty")
+        let button5 = makeButton(imageName: animalList[0] + "_dirty")
         
         contentView.addSubview(button1)
         contentView.addSubview(button2)
@@ -212,5 +224,10 @@ class MainListViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false // 뷰 컨트롤러가 사라질 때 나타내기
+    }
+    
+    func didClearContentID(id clearContent: Int) {
+        clearContents.append(clearContent)
+        // mainTable.reloadData()
     }
 }
