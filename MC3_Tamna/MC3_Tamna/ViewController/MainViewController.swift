@@ -57,23 +57,45 @@ class MainViewController: UIViewController, ContentDelegate {
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return animalList.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if clearContents.contains(indexPath.row) {
-            cell.textLabel?.text = animalList[indexPath.row] + "   완료~!!!"
+            cell.backgroundView = makeImageView(imageName: animalList[indexPath.row] + "_clean")
         } else {
-            cell.textLabel?.text = animalList[indexPath.row]
+            cell.backgroundView = makeImageView(imageName: animalList[indexPath.row] + "_dirty")
         }
+        cell.selectionStyle = .none
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = StarViewController()
         // 2. StarVC에 해당 animal 이름(String) 전달
         vc.animal = animalList[indexPath.row]
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func makeImageView(imageName: String) -> UIImageView {
+        let imageView = UIImageView(image: UIImage(named: imageName))
+        
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.contentMode = .scaleToFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 2
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15
+        
+        return imageView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
 }
