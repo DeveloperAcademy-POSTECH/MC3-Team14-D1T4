@@ -70,7 +70,7 @@ class SubmitCompleteViewController: UIViewController {
         return success
     }()
     
-    private let endButton: UIButton = {
+    private lazy var endButton: UIButton = {
         // 해설을 전부 보고, 나가는 버튼
         let button = UIButton()
         button.setTitle("완료", for: .normal)

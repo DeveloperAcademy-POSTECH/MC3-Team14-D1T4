@@ -96,7 +96,7 @@ class QuizViewController: UIViewController {
         return imageView
     }()
     
-    private let quizSubmit: UIButton = {
+    private lazy var quizSubmit: UIButton = {
         // view 최하단에 있는 제출 버튼
         let quizSubmit = UIButton()
         quizSubmit.setTitle("정답 제출하기", for: .normal)
