@@ -13,7 +13,7 @@ protocol ContentDelegate {
     func didClearContentID(id clearContent: Int)
 }
 
-class StarViewController: UIViewController, QuizDelegate {
+class StarViewController: UIViewController {
     
     var delegate: ContentDelegate?
     
@@ -159,7 +159,6 @@ extension StarViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard indexPath.row == clearIndex + 1 else { return }
         let vc = QuizViewController()
         vc.quiz = content.quizzes[indexPath.row] // 12. quiz 건네기
-        vc.delegate = self // 13. 데이터 전달받기위해 delegate 채택
         navigationController?.pushViewController(vc, animated: true)
     }
 }

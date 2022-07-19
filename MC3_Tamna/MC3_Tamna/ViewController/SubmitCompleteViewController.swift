@@ -10,7 +10,6 @@ import UIKit
 class SubmitCompleteViewController: UIViewController {
     
     var quiz: Quiz?
-    var delegate: QuizDelegate?
     var animal: String?
     
     override func viewDidLoad() {
