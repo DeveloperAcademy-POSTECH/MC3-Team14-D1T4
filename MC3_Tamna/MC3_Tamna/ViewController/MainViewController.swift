@@ -17,12 +17,21 @@ class MainViewController: UIViewController, ContentDelegate {
         }
     }
     
-    // 1. StarVC에 넘길 동물의 이름
+    // StarVC에 넘길 동물의 이름
     private var animalList = ["polarbear", "elephant", "dolphin", "tiger", "panda"]
+    
+    
+    private lazy var backImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "pandaSky")
+        imageView.contentMode = .scaleToFill
+        return imageView
+    }()
     
     private let mainTable: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0)
         return tableView
     }()
 
@@ -30,7 +39,7 @@ class MainViewController: UIViewController, ContentDelegate {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        
+        view.addSubview(backImageView)
         view.addSubview(mainTable)
         mainTable.delegate = self
         mainTable.dataSource = self
@@ -46,7 +55,7 @@ class MainViewController: UIViewController, ContentDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        backImageView.frame = view.bounds
         mainTable.frame = view.bounds
     }
     
@@ -69,6 +78,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.backgroundView = makeImageView(imageName: animalList[indexPath.row] + "_dirty")
         }
+        cell.backgroundColor = UIColor.systemBackground.withAlphaComponent(0)
         cell.selectionStyle = .none
         return cell
     }
@@ -84,11 +94,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func makeImageView(imageName: String) -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: imageName))
         
-        imageView.layer.borderColor = UIColor.white.cgColor
         imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 2
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
         
@@ -96,6 +103,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return (view.safeAreaLayoutGuide.layoutFrame.size.height) * 0.2
     }
 }

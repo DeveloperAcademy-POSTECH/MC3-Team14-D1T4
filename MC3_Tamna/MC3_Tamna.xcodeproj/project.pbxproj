@@ -21,13 +21,10 @@
 		96027EA42884350900D2E07E /* polarbear.json in Resources */ = {isa = PBXBuildFile; fileRef = 96027E9F2884350900D2E07E /* polarbear.json */; };
 		96027EA52884350900D2E07E /* dolphin.json in Resources */ = {isa = PBXBuildFile; fileRef = 96027EA02884350900D2E07E /* dolphin.json */; };
 		96027EA62884350900D2E07E /* elephant.json in Resources */ = {isa = PBXBuildFile; fileRef = 96027EA12884350900D2E07E /* elephant.json */; };
-		967FF5FE2884359500E5AF0A /* quizzes.json in Resources */ = {isa = PBXBuildFile; fileRef = 967FF5FD2884359500E5AF0A /* quizzes.json */; };
-		967FF600288435B600E5AF0A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF5FF288435B600E5AF0A /* Data.swift */; };
 		967FF602288437AF00E5AF0A /* StarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF601288437AF00E5AF0A /* StarViewController.swift */; };
 		967FF605288439E800E5AF0A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 967FF604288439E800E5AF0A /* Lottie */; };
 		967FF607288442E500E5AF0A /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF606288442E500E5AF0A /* MissionCell.swift */; };
 		967FF6092884517F00E5AF0A /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF6082884517F00E5AF0A /* QuizViewController.swift */; };
-		FE68184528854BBC0048C75D /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE68184428854BBC0048C75D /* MainListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,12 +43,9 @@
 		96027E9F2884350900D2E07E /* polarbear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = polarbear.json; sourceTree = "<group>"; };
 		96027EA02884350900D2E07E /* dolphin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dolphin.json; sourceTree = "<group>"; };
 		96027EA12884350900D2E07E /* elephant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = elephant.json; sourceTree = "<group>"; };
-		967FF5FD2884359500E5AF0A /* quizzes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quizzes.json; sourceTree = "<group>"; };
-		967FF5FF288435B600E5AF0A /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		967FF601288437AF00E5AF0A /* StarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewController.swift; sourceTree = "<group>"; };
 		967FF606288442E500E5AF0A /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
 		967FF6082884517F00E5AF0A /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
-		FE68184428854BBC0048C75D /* MainListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +97,6 @@
 		96027E97288433E700D2E07E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FE68184428854BBC0048C75D /* MainListViewController.swift */,
 				96027E87288432F300D2E07E /* MainViewController.swift */,
 				967FF601288437AF00E5AF0A /* StarViewController.swift */,
 				967FF6082884517F00E5AF0A /* QuizViewController.swift */,
@@ -127,8 +120,6 @@
 		96027E9B2884341200D2E07E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				967FF5FD2884359500E5AF0A /* quizzes.json */,
-				967FF5FF288435B600E5AF0A /* Data.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,7 +205,6 @@
 				96027EA32884350900D2E07E /* panda.json in Resources */,
 				96027EA22884350900D2E07E /* tiger.json in Resources */,
 				96027EA42884350900D2E07E /* polarbear.json in Resources */,
-				967FF5FE2884359500E5AF0A /* quizzes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE68184528854BBC0048C75D /* MainListViewController.swift in Sources */,
 				83FE8109288544CE004B5367 /* SubmitCompleteViewController.swift in Sources */,
 				96027E88288432F300D2E07E /* MainViewController.swift in Sources */,
 				967FF607288442E500E5AF0A /* MissionCell.swift in Sources */,
@@ -234,7 +223,6 @@
 				96027E86288432F300D2E07E /* SceneDelegate.swift in Sources */,
 				96027E99288433F600D2E07E /* Extension.swift in Sources */,
 				967FF602288437AF00E5AF0A /* StarViewController.swift in Sources */,
-				967FF600288435B600E5AF0A /* Data.swift in Sources */,
 				83FE810B2885458D004B5367 /* QuizAnswerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
