@@ -76,3 +76,5 @@ class MissionCell: UICollectionViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 }
+
+//addSubview랑 constraints를 추가하면서 애니메이션때리면 실행이 안되네...
