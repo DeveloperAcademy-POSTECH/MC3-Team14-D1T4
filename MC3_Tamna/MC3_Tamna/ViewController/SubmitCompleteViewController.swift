@@ -19,7 +19,7 @@ class SubmitCompleteViewController: UIViewController {
         view.addSubview(success)
         view.addSubview(endButton)
         success.text = """
-            정답은: \(quiz?.answer[quiz?.rightAnswerIndex ?? 0] ?? "")
+            정답은: \(quiz?.answers[quiz?.rightAnswerIndex ?? 0] ?? "")
             돌고래 너무 귀엽죠 ~~
             돌고래 완전 굿 굿!
             돌고래와 함께 춤을...

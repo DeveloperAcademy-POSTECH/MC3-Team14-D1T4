@@ -18,7 +18,7 @@ class QuizViewController: UIViewController {
     // 전달받은 animal
     
     private var quizAnswers: [String] {
-        let quizAnswer = quiz?.answer
+        let quizAnswer = quiz?.answers
         
         return quizAnswer ?? [""]
     }

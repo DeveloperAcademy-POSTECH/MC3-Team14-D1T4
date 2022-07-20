@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42B3CA8D2887ECB200A06C2E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3CA8C2887ECB200A06C2E /* Data.swift */; };
+		42B3CA8F2887ECCA00A06C2E /* quizzes.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B3CA8E2887ECCA00A06C2E /* quizzes.json */; };
 		83FE8109288544CE004B5367 /* SubmitCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE8108288544CE004B5367 /* SubmitCompleteViewController.swift */; };
 		83FE810B2885458D004B5367 /* QuizAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE810A2885458D004B5367 /* QuizAnswerCollectionViewCell.swift */; };
 		83FE810E288546F3004B5367 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 83FE810D288546F3004B5367 /* Lottie */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42B3CA8C2887ECB200A06C2E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = SOURCE_ROOT; };
+		42B3CA8E2887ECCA00A06C2E /* quizzes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quizzes.json; sourceTree = SOURCE_ROOT; };
 		83FE8108288544CE004B5367 /* SubmitCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCompleteViewController.swift; sourceTree = "<group>"; };
 		83FE810A2885458D004B5367 /* QuizAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		96027E80288432F300D2E07E /* MC3_Tamna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC3_Tamna.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +124,8 @@
 		96027E9B2884341200D2E07E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				42B3CA8C2887ECB200A06C2E /* Data.swift */,
+				42B3CA8E2887ECCA00A06C2E /* quizzes.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,6 +211,7 @@
 				96027EA32884350900D2E07E /* panda.json in Resources */,
 				96027EA22884350900D2E07E /* tiger.json in Resources */,
 				96027EA42884350900D2E07E /* polarbear.json in Resources */,
+				42B3CA8F2887ECCA00A06C2E /* quizzes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83FE8109288544CE004B5367 /* SubmitCompleteViewController.swift in Sources */,
+				42B3CA8D2887ECB200A06C2E /* Data.swift in Sources */,
 				96027E88288432F300D2E07E /* MainViewController.swift in Sources */,
 				967FF607288442E500E5AF0A /* MissionCell.swift in Sources */,
 				96027E84288432F300D2E07E /* AppDelegate.swift in Sources */,
