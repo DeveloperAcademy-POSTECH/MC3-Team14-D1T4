@@ -77,8 +77,8 @@ class StarViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: .screenW*0.9, height: .screenW*0.15)
-        layout.minimumLineSpacing = .screenW*0.07
+        layout.itemSize = CGSize(width: .screenW*0.9, height: .screenH*0.09)
+        layout.minimumLineSpacing = .screenH*0.02
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isScrollEnabled = false //scroll 차단.
         collectionView.backgroundColor = .clear
@@ -125,9 +125,9 @@ class StarViewController: UIViewController {
         lottieView.frame = view.bounds
         collectionView.frame = CGRect(
             x: 0,
-            y: content.quizzes.count == 4 ? midY + 30 : midY - 30,
+            y: content.quizzes.count == 4 ? midY + .ten*3 : midY+30 - .screenH*0.1,
             width: .screenW,
-            height: .screenW + .hund
+            height: .screenH * 0.7
         )
     }
 }
