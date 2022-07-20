@@ -10,52 +10,18 @@ import UIKit
 class QuizViewController: UIViewController {
     var quiz: Quiz?
 
+   
+    
+    // MARK: Properties
+    
     var animal: String?
+    // 전달받은 animal
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
-        view.addSubview(quizImage)
-        view.addSubview(quizText)
-        view.addSubview(quizAnswerCollection)
-        view.addSubview(quizSubmit)
-        configureNavbar()
-        NSLayoutConstraint.activate([
-            quizImage.centerXAnchor.constraint(equalTo:  view.centerXAnchor),
-            quizImage.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            quizImage.widthAnchor.constraint(equalToConstant: 200),
-            quizImage.heightAnchor.constraint(equalToConstant: 200)
-            // autolayout
-        ])
-        
-        NSLayoutConstraint.activate([
-            quizAnswerCollection.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            quizAnswerCollection.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
-            quizAnswerCollection.widthAnchor.constraint(equalToConstant: view.frame.width),
-            quizAnswerCollection.heightAnchor.constraint(equalToConstant: 250)
-            // auto layout
-        ])
-        quizAnswerCollection.delegate = self
-        // delegate 연결
-        quizAnswerCollection.dataSource = self
-        // datasource 연결
-        quizAnswerCollection.contentInset = UIEdgeInsets(top: 15, left: 30, bottom: 0, right: 30)
-        // padding
-        
-        NSLayoutConstraint.activate([
-            quizSubmit.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            quizSubmit.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
-            quizSubmit.widthAnchor.constraint(equalToConstant: view.frame.width - 60),
-            quizSubmit.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-    
-    private lazy var quizAnswer: [String] = {
+    private var quizAnswer: [String] {
         let quizAnswer = quiz?.answer
         
         return quizAnswer ?? [""]
-    }()
+    }
     // 퀴즈 답변
     
     private var didChooseIndex: Int = 0
@@ -66,32 +32,17 @@ class QuizViewController: UIViewController {
     }
     // 해당 퀴즈에서 정답 값
     
-    @objc private func submitButtonTapped() {
-        // 퀴즈를 제출하면 해당 값들을 검사하고, 틀리면 alert을, 맞으면 SubmitCompleteViewController로 navigate 한다.
-        let detailController = SubmitCompleteViewController()
-        detailController.quiz = quiz
-        detailController.animal = animal
-        // quiz, animal 넘겨주기
-        if (didChooseIndex == answerIndex) {
-            navigationController?.pushViewController(detailController, animated: true)
-        } else {
-            let alert = UIAlertController(title: "오답입니다", message: "다시 한번 생각해볼까요?", preferredStyle: .alert)
-            let tryAgain = UIAlertAction(title: "알겠어요!", style: .default, handler: nil)
-            
-            alert.addAction(tryAgain)
-            present(alert, animated: true, completion: nil)
-        }
-    }
+    // MARK: UIComponents
     
-    private let quizImage: UIImageView = {
+    private lazy var quizImage: UIImageView = {
         // view 상단에 있는 이미지
-        var quizImage = UIImage(named: "dolphin")
-        // Image 생성 (현재 더미)
+        var quizImage = UIImage(named: animal ?? "dolphin")
+        // Image 생성
         quizImage = quizImage?.withRenderingMode(.alwaysOriginal)
         // Image가 깨지지 않고 원본을 그대로 렌더링 하게 설정
         let imageView: UIImageView = UIImageView(image: quizImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -107,7 +58,7 @@ class QuizViewController: UIViewController {
         return quizSubmit
     }()
     
-    lazy var quizText: UITextView = {
+    private lazy var quizText: UITextView = {
         // view 중앙에 있는 퀴즈 소개
         var quizText: UITextView = UITextView(frame: CGRect(x: 20, y: 350, width: self.view.bounds.width - 40, height: 100))
         // TextView 객체 생성
@@ -128,8 +79,10 @@ class QuizViewController: UIViewController {
         // 색 설정
         quizText.textAlignment = NSTextAlignment.left
         // 정렬
-        quizText.textContainerInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        quizText.textContainerInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        quizText.translatesAutoresizingMaskIntoConstraints = false
         quizText.isEditable = false
+        quizText.isScrollEnabled = false
         return quizText
     }()
     
@@ -140,6 +93,55 @@ class QuizViewController: UIViewController {
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .red
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isScrollEnabled = true
+        return scrollView
+      }()
+    
+    // MARK: Life Cycle Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        view.addSubview(scrollView)
+        configureSubviews()
+//        configureNavbar()
+        applyConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .default
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+//        scrollView.frame = view.bounds
+    }
+    
+    // MARK: Private Methods
+    
+    @objc private func submitButtonTapped() {
+        // 퀴즈를 제출하면 해당 값들을 검사하고, 틀리면 alert을, 맞으면 SubmitCompleteViewController로 navigate 한다.
+        let detailController = SubmitCompleteViewController()
+        detailController.quiz = quiz
+        detailController.animal = animal
+        // quiz, animal 넘겨주기
+        if (didChooseIndex == answerIndex) {
+            navigationController?.pushViewController(detailController, animated: true)
+        } else {
+            let alert = UIAlertController(title: "오답입니다", message: "다시 한번 생각해볼까요?", preferredStyle: .alert)
+            let tryAgain = UIAlertAction(title: "알겠어요!", style: .default, handler: nil)
+            
+            alert.addAction(tryAgain)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
     private func configureNavbar(){
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "lightbulb.fill"), style: .done, target: self, action: nil)
@@ -147,8 +149,59 @@ class QuizViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.wwfYellow
         // 객체의 색깔을 바꾸는 방법
     }
+    private func configureSubviews(){
+        scrollView.addSubview(quizImage)
+        scrollView.addSubview(quizText)
+        scrollView.addSubview(quizAnswerCollection)
+        scrollView.addSubview(quizSubmit)
+        quizAnswerCollection.delegate = self
+        // delegate 연결
+        quizAnswerCollection.dataSource = self
+        // datasource 연결
+        quizAnswerCollection.contentInset = UIEdgeInsets(top: 15, left: 30, bottom: 0, right: 30)
+        // padding
+        
+    }
+    private func applyConstraints(){
+        let quizQuestionLines: Int = (quiz?.question.count ?? 25) / 10
+        
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            quizImage.centerXAnchor.constraint(equalTo:  scrollView.centerXAnchor),
+            quizImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
+            quizImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30),
+            quizImage.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            quizImage.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.3)
+            // autolayout
+        ])
+        NSLayoutConstraint.activate([
+            quizText.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            quizText.topAnchor.constraint(equalTo: quizImage.bottomAnchor, constant: 30),
+            quizText.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            quizText.heightAnchor.constraint(equalToConstant: CGFloat(40 * quizQuestionLines))
+        ])
+        NSLayoutConstraint.activate([
+            quizAnswerCollection.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            quizAnswerCollection.topAnchor.constraint(equalTo: quizText.bottomAnchor, constant: 30 ),
+            quizAnswerCollection.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            quizAnswerCollection.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.5)
+            // auto layout
+        ])
+        NSLayoutConstraint.activate([
+            quizSubmit.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            quizSubmit.topAnchor.constraint(equalTo: quizAnswerCollection.bottomAnchor, constant: 30),
+            quizSubmit.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -60),
+            quizSubmit.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
 }
 
+// MARK: Delegate, DataSource
 extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -190,4 +243,25 @@ extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let spacing: CGFloat = 20
         return CGSize(width: (collectionView.bounds.width / 2 - spacing * 2), height: 70)
     }
+}
+
+extension QuizViewController: UITextViewDelegate{
+    func textViewDidChange(_ textView: UITextView) {
+            
+            let size = CGSize(width: view.frame.width, height: .infinity)
+            let estimatedSize = textView.sizeThatFits(size)
+            
+            textView.constraints.forEach { (constraint) in
+            
+              /// 180 이하일때는 더 이상 줄어들지 않게하기
+                if estimatedSize.height <= 50 {
+                
+                }
+                else {
+                    if constraint.firstAttribute == .height {
+                        constraint.constant = estimatedSize.height
+                    }
+                }
+            }
+        }
 }
