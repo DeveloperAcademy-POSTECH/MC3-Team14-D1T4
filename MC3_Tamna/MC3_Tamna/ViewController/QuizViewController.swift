@@ -109,7 +109,7 @@ class QuizViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
-        scrollView.contentSize = view.bounds.size
+//        scrollView.contentSize = view.bounds.size
         configureSubviews()
 //        configureNavbar()
         applyConstraints()
@@ -166,10 +166,9 @@ class QuizViewController: UIViewController {
     }
     private func applyConstraints(){
         let quizQuestionLines: Int = (quiz?.question.count ?? 25) / 10
+        // 불러온 퀴즈의 단어 개수를 계산해 총 줄의 수를 계산합니다!
         
         NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             scrollView.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
