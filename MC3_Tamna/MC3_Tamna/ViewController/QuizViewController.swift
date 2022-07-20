@@ -177,7 +177,7 @@ class QuizViewController: UIViewController {
             quizImage.centerXAnchor.constraint(equalTo:  scrollView.centerXAnchor),
             quizImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
             quizImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30),
-            quizImage.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            quizImage.trailingAnchor.constraint(equalTo:scrollView.trailingAnchor, constant:30),
             quizImage.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.3)
             // autolayout
         ])
