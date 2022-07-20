@@ -54,10 +54,9 @@ class MissionCell: UICollectionViewCell {
             contentView.backgroundColor = .wwfGray
         } else if quiz.id == clearIndex + 1 { // open
             contentView.backgroundColor = .white
-            contentView.layer.shadowColor = UIColor.black.cgColor
             contentView.layer.shadowRadius = 4
             contentView.layer.shadowOpacity = 0.7
-            contentView.layer.shadowOffset = CGSize(width: 4, height: 4)
+            contentView.layer.shadowOffset = CGSize(width: 0, height: 4)
         } else { // clear
             contentView.backgroundColor = .wwfYellow
             checkImageView.alpha = 1
@@ -77,3 +76,5 @@ class MissionCell: UICollectionViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 }
+
+//addSubview랑 constraints를 추가하면서 애니메이션때리면 실행이 안되네...
