@@ -17,7 +17,7 @@ class QuizViewController: UIViewController {
     var animal: String?
     // 전달받은 animal
     
-    private var quizAnswer: [String] {
+    private var quizAnswers: [String] {
         let quizAnswer = quiz?.answer
         
         return quizAnswer ?? [""]
@@ -212,7 +212,7 @@ extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: QuizAnswerCollectionViewCell.identifier, for: indexPath) as? QuizAnswerCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.quizAnswerButtonView.setTitle(quizAnswer[indexPath.row], for: .normal)
+        cell.quizAnswerButtonView.setTitle(quizAnswers[indexPath.row], for: .normal)
         cell.quizAnswerButtonView.titleLabel?.textColor = .white
         cell.quizAnswerButtonView.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         cell.quizAnswerButtonView.layer.borderColor = UIColor.white.cgColor
@@ -243,25 +243,4 @@ extension QuizViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let spacing: CGFloat = 20
         return CGSize(width: (collectionView.bounds.width / 2 - spacing * 2), height: 70)
     }
-}
-
-extension QuizViewController: UITextViewDelegate{
-    func textViewDidChange(_ textView: UITextView) {
-            
-            let size = CGSize(width: view.frame.width, height: .infinity)
-            let estimatedSize = textView.sizeThatFits(size)
-            
-            textView.constraints.forEach { (constraint) in
-            
-              /// 180 이하일때는 더 이상 줄어들지 않게하기
-                if estimatedSize.height <= 50 {
-                
-                }
-                else {
-                    if constraint.firstAttribute == .height {
-                        constraint.constant = estimatedSize.height
-                    }
-                }
-            }
-        }
 }
