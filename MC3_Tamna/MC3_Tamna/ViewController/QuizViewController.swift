@@ -108,6 +108,7 @@ class QuizViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
+        scrollView.contentSize = view.bounds.size
         configureSubviews()
 //        configureNavbar()
         applyConstraints()
@@ -166,9 +167,9 @@ class QuizViewController: UIViewController {
         let quizQuestionLines: Int = (quiz?.question.count ?? 25) / 10
         
         NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             scrollView.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
         NSLayoutConstraint.activate([
@@ -196,7 +197,8 @@ class QuizViewController: UIViewController {
             quizSubmit.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             quizSubmit.topAnchor.constraint(equalTo: quizAnswerCollection.bottomAnchor, constant: 30),
             quizSubmit.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -60),
-            quizSubmit.heightAnchor.constraint(equalToConstant: 40)
+            quizSubmit.heightAnchor.constraint(equalToConstant: 40),
+            quizSubmit.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
         ])
     }
 }
