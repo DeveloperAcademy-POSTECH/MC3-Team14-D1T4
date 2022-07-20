@@ -27,7 +27,6 @@
 		967FF605288439E800E5AF0A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 967FF604288439E800E5AF0A /* Lottie */; };
 		967FF607288442E500E5AF0A /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF606288442E500E5AF0A /* MissionCell.swift */; };
 		967FF6092884517F00E5AF0A /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FF6082884517F00E5AF0A /* QuizViewController.swift */; };
-		FE68184528854BBC0048C75D /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE68184428854BBC0048C75D /* MainListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +50,6 @@
 		967FF601288437AF00E5AF0A /* StarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewController.swift; sourceTree = "<group>"; };
 		967FF606288442E500E5AF0A /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
 		967FF6082884517F00E5AF0A /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
-		FE68184428854BBC0048C75D /* MainListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +101,6 @@
 		96027E97288433E700D2E07E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FE68184428854BBC0048C75D /* MainListViewController.swift */,
 				96027E87288432F300D2E07E /* MainViewController.swift */,
 				967FF601288437AF00E5AF0A /* StarViewController.swift */,
 				967FF6082884517F00E5AF0A /* QuizViewController.swift */,
@@ -225,7 +222,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE68184528854BBC0048C75D /* MainListViewController.swift in Sources */,
 				83FE8109288544CE004B5367 /* SubmitCompleteViewController.swift in Sources */,
 				96027E88288432F300D2E07E /* MainViewController.swift in Sources */,
 				967FF607288442E500E5AF0A /* MissionCell.swift in Sources */,

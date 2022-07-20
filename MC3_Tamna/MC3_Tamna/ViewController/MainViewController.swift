@@ -87,8 +87,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 2
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
         
@@ -96,6 +94,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return (view.safeAreaLayoutGuide.layoutFrame.size.height) * 0.2
     }
 }
