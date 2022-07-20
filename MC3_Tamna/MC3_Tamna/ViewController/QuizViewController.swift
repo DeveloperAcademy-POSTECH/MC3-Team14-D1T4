@@ -92,6 +92,7 @@ class QuizViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.register(QuizAnswerCollectionViewCell.self, forCellWithReuseIdentifier: QuizAnswerCollectionViewCell.identifier)
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.isScrollEnabled = false
         return collection
     }()
     
@@ -188,14 +189,14 @@ class QuizViewController: UIViewController {
         ])
         NSLayoutConstraint.activate([
             quizAnswerCollection.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            quizAnswerCollection.topAnchor.constraint(equalTo: quizText.bottomAnchor, constant: 30 ),
+            quizAnswerCollection.topAnchor.constraint(equalTo: quizText.bottomAnchor, constant: 30),
             quizAnswerCollection.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            quizAnswerCollection.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.3)
+            quizAnswerCollection.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.4)
             // auto layout
         ])
         NSLayoutConstraint.activate([
             quizSubmit.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            quizSubmit.topAnchor.constraint(equalTo: quizAnswerCollection.bottomAnchor),
+            quizSubmit.topAnchor.constraint(equalTo: quizAnswerCollection.bottomAnchor, constant: 10),
             quizSubmit.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -60),
             quizSubmit.heightAnchor.constraint(equalToConstant: 40),
             quizSubmit.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
