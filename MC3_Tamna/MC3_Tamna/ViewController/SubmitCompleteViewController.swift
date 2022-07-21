@@ -92,7 +92,7 @@ class SubmitCompleteViewController: UIViewController {
         ])
         NSLayoutConstraint.activate([
             endButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            endButton.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            endButton.topAnchor.constraint(equalTo: success.bottomAnchor, constant: 50),
             endButton.widthAnchor.constraint(equalToConstant: view.frame.width - 100),
             endButton.heightAnchor.constraint(equalToConstant: 40)
         ])

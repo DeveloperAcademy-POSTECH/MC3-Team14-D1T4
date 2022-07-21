@@ -99,7 +99,7 @@ class QuizViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 //        scrollView.backgroundColor = .red
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+//        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isScrollEnabled = true
         return scrollView
       }()
@@ -110,7 +110,7 @@ class QuizViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
-//        scrollView.contentSize = view.bounds.size
+        scrollView.contentSize = view.bounds.size
         configureSubviews()
 //        configureNavbar()
         applyConstraints()
@@ -122,7 +122,7 @@ class QuizViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        scrollView.frame = view.bounds
+        scrollView.frame = view.bounds
     }
     
     // MARK: Private Methods
@@ -169,13 +169,13 @@ class QuizViewController: UIViewController {
         let quizQuestionLines: Int = (quiz?.question.count ?? 25) / 10
         // 불러온 퀴즈의 단어 개수를 계산해 총 줄의 수를 계산합니다!
         
-        NSLayoutConstraint.activate([
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+//            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor)
+//        ])
         NSLayoutConstraint.activate([
             quizImage.centerXAnchor.constraint(equalTo:  scrollView.centerXAnchor),
-            quizImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
+            quizImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
             quizImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30),
             quizImage.trailingAnchor.constraint(equalTo:scrollView.trailingAnchor, constant:30),
             quizImage.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.3)
@@ -191,7 +191,8 @@ class QuizViewController: UIViewController {
             quizAnswerCollection.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             quizAnswerCollection.topAnchor.constraint(equalTo: quizText.bottomAnchor, constant: 30),
             quizAnswerCollection.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            quizAnswerCollection.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.4)
+            quizAnswerCollection.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.4),
+            quizAnswerCollection.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
             // auto layout
         ])
         NSLayoutConstraint.activate([
@@ -199,7 +200,7 @@ class QuizViewController: UIViewController {
             quizSubmit.topAnchor.constraint(equalTo: quizAnswerCollection.bottomAnchor, constant: 10),
             quizSubmit.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -60),
             quizSubmit.heightAnchor.constraint(equalToConstant: 40),
-            quizSubmit.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
+            quizSubmit.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
 }
