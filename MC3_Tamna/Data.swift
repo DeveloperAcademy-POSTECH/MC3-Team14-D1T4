@@ -12,6 +12,7 @@ struct Quiz: Decodable, Identifiable {
     var question: String
     var answers: [String]
     var rightAnswerIndex: Int
+    var explanation: String
 }
 
 struct AnimalQuizzes: Decodable, Identifiable {
@@ -21,7 +22,7 @@ struct AnimalQuizzes: Decodable, Identifiable {
 
 struct QuizDao {
     private let totalAnimalQuizzes: [AnimalQuizzes] = loadQuizzes("quizzes.json") //json 파싱해와서 totalAnimalQuizzes라는 변수에저장,private let으로 설정되어있어 구조체 밖에서 접근할수 없음
-    private let errorQuizzes: AnimalQuizzes = AnimalQuizzes(id: 0, quizzes: [Quiz(id: 0, question: "에러퀴즈!", answers: ["에러0","에러1","에러2","에러3"], rightAnswerIndex: 1)])//에러 발생시 출력해줄 에러 출력용객체 생성
+    private let errorQuizzes: AnimalQuizzes = AnimalQuizzes(id: 0, quizzes: [Quiz(id: 0, question: "에러퀴즈!", answers: ["에러0","에러1","에러2","에러3"], rightAnswerIndex: 1,explanation: "에러 설명")])//에러 발생시 출력해줄 에러 출력용객체 생성
     private let animalDict = ["polarbear": 0 ,"elephant": 1, "dolphin": 2, "tiger": 3, "panda":4]//동물이름으로 totalAnimalQuizzess에 접근할 인덱스를 찾기 위해 선언한 Dictionary
     
     
