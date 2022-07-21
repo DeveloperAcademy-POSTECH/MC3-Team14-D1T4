@@ -30,8 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		42B3CA8C2887ECB200A06C2E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = SOURCE_ROOT; };
-		42B3CA8E2887ECCA00A06C2E /* quizzes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quizzes.json; sourceTree = SOURCE_ROOT; };
+		42B3CA8C2887ECB200A06C2E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Data.swift; path = MC3_Tamna/Model/Data.swift; sourceTree = SOURCE_ROOT; };
+		42B3CA8E2887ECCA00A06C2E /* quizzes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = quizzes.json; path = MC3_Tamna/Model/quizzes.json; sourceTree = SOURCE_ROOT; };
 		83FE8108288544CE004B5367 /* SubmitCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCompleteViewController.swift; sourceTree = "<group>"; };
 		83FE810A2885458D004B5367 /* QuizAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		96027E80288432F300D2E07E /* MC3_Tamna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC3_Tamna.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +88,7 @@
 				96027E85288432F300D2E07E /* SceneDelegate.swift */,
 				96027E98288433F600D2E07E /* Extension.swift */,
 				96027E9A2884340A00D2E07E /* Lotties */,
-				96027E9B2884341200D2E07E /* Model */,
+				96A3412528892C6E008EC700 /* Model */,
 				96027E9C2884342100D2E07E /* View */,
 				96027E97288433E700D2E07E /* ViewController */,
 				96027E8C288432F400D2E07E /* Assets.xcassets */,
@@ -121,15 +121,6 @@
 			path = Lotties;
 			sourceTree = "<group>";
 		};
-		96027E9B2884341200D2E07E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				42B3CA8C2887ECB200A06C2E /* Data.swift */,
-				42B3CA8E2887ECCA00A06C2E /* quizzes.json */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		96027E9C2884342100D2E07E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +128,15 @@
 				83FE810A2885458D004B5367 /* QuizAnswerCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		96A3412528892C6E008EC700 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42B3CA8C2887ECB200A06C2E /* Data.swift */,
+				42B3CA8E2887ECCA00A06C2E /* quizzes.json */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
