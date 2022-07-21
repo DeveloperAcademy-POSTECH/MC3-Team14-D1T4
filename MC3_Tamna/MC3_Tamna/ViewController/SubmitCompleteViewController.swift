@@ -27,7 +27,7 @@ class SubmitCompleteViewController: UIViewController {
     
     private let success: UITextView = {
         // 퀴즈에 대한 해설이 있는 텍스트 뷰
-       let success = UITextView()
+        let success = UITextView()
         success.text = ""
         success.isEditable = false
         success.textColor = UIColor.systemBrown
@@ -58,12 +58,15 @@ class SubmitCompleteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemBackground
         configureSubviews()
+        //        success.text = """
+        //            정답은: \(quiz?.answers[quiz?.rightAnswerIndex ?? 0] ?? "")
+        //            돌고래 너무 귀엽죠 ~~
+        //            돌고래 완전 굿 굿!
+        //            돌고래와 함께 춤을...
+        //        """
         success.text = """
-            정답은: \(quiz?.answers[quiz?.rightAnswerIndex ?? 0] ?? "")
-            돌고래 너무 귀엽죠 ~~
-            돌고래 완전 굿 굿!
-            돌고래와 함께 춤을...
-        """
+                    정답은: \(quiz?.answers[quiz?.rightAnswerIndex ?? 0] ?? "")입니다\n\(quiz?.explanation ?? "")
+                """
         applyConstraints()
         
     }
@@ -102,11 +105,11 @@ class SubmitCompleteViewController: UIViewController {
         UserDefaults.standard.set(quiz!.id, forKey: animal ?? "panda")
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: StarViewController.self) {
-                    self.navigationController!.popToViewController(controller, animated: true)
-                    break
-                }
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
         }
         // reference: https://stackoverflow.com/questions/30003814/how-can-i-pop-specific-view-controller-in-swift
-         }
+    }
     //notification center
 }
